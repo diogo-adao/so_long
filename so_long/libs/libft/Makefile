@@ -6,7 +6,7 @@
 #    By: diolivei <diolivei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/24 16:34:34 by diolivei          #+#    #+#              #
-#    Updated: 2024/07/16 15:46:26 by diolivei         ###   ########.fr        #
+#    Updated: 2024/09/05 17:40:23 by diolivei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ clean:
 fclean: clean
 	rm -f $(NAME)
 
-re: fclean $(NAME)
+re:
+	fclean $(NAME)
 
 .PHONY: all clean fclean re
