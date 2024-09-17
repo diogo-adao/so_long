@@ -6,7 +6,7 @@
 #    By: diolivei <diolivei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/04 19:25:13 by diolivei          #+#    #+#              #
-#    Updated: 2024/09/05 17:41:24 by diolivei         ###   ########.fr        #
+#    Updated: 2024/09/17 15:57:07 by diolivei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,11 +22,12 @@ LIBFT_FLAGS = -Llibs/libft -lft
 SRCS = $(wildcard src/*.c)
 NAME = so_long
 
+BOLD_WHITE =	\033[1;97m
 BOLD_PURPLE	=	\033[1;35m
-BOLD_CYAN	=	\033[1;36m
+BOLD_CYAN =		\033[1;36m
 BOLD_YELLOW	=	\033[1;33m
-BOLD_GREEN = \033[1;32m
-NO_COLOR	=	\033[0m
+BOLD_GREEN =	\033[1;32m
+NO_COLOR =		\033[0m
 
 all: $(NAME)
 	@sleep 1
@@ -37,6 +38,7 @@ $(NAME): $(SRCS) $(LIBFT) $(MLX)
 	@$(CC) $(CFLAGS) -o $@ $(SRCS) $(INCLUDES) $(LIBFT) $(MLX_FLAGS) $(LIBFT_FLAGS)
 
 $(LIBFT):
+	@echo "\n $(BOLD_WHITE)Starting...$(NO_COLOR)\n"
 	@make -C libs/libft > /dev/null 2>&1
 	@echo "\n📚 $(BOLD_PURPLE)Libft compiled.$(NO_COLOR)\n"
 
