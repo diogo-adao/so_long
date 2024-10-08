@@ -6,7 +6,7 @@
 /*   By: diolivei <diolivei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 16:03:46 by diolivei          #+#    #+#             */
-/*   Updated: 2024/07/16 15:28:07 by diolivei         ###   ########.fr       */
+/*   Updated: 2024/10/08 15:06:14 by diolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,15 +76,3 @@ char	*get_next_line(int fd)
 	save = ft_newline(line);
 	return (line);
 }
-
-/* #include <stdio.h>
-#include <fcntl.h>
-int main()
-{
-    int fd = open("teste.txt", O_RDONLY);
-    char *line;
-
-    while ((line = get_next_line(fd)))
-        printf("%s", line);
-    return (0);
-} */

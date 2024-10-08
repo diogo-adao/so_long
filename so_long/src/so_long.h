@@ -6,7 +6,7 @@
 /*   By: diolivei <diolivei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 16:39:58 by diolivei          #+#    #+#             */
-/*   Updated: 2024/09/18 17:26:17 by diolivei         ###   ########.fr       */
+/*   Updated: 2024/10/08 18:35:43 by diolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,15 @@ typedef struct s_data
 	void		*textures[5]; // MLX image pointers (on the stack)
 	t_map		map;
 }	t_data;
+
+// Filling the map
+int define_width(int fd);
+int define_height(int fd);
+void textures_init(t_data *data);
+void fill_map(t_data *data, int fd);
+
+// Events
+int on_destroy(t_data *data);
+int on_keypress();
 
 #endif
