@@ -6,7 +6,7 @@
 /*   By: diolivei <diolivei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 16:39:58 by diolivei          #+#    #+#             */
-/*   Updated: 2024/10/10 19:48:48 by diolivei         ###   ########.fr       */
+/*   Updated: 2024/10/14 19:07:15 by diolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,16 @@ void fill_map(t_data *data, int fd);
 void move_player(t_data *data, int dx, int dy);
 int is_valid_move(t_data *data, int x, int y);
 void move_handler(t_data *data, int new_x, int new_y);
-int invalid_map(t_data *data);
+int invalid_map(t_data *data, int fd);
+void free_map(char **map, int height);
+int first_row(int fd);
+int last_row(t_data *data, int fd);
+int first_and_last_col(t_data *data, int fd);
+void move_player(t_data *data, int x, int y);
+int init_map(t_data *data, int fd);
+int not_valid(t_data *data, int fd);
+int wrong_shape(t_data *data, int fd);
+void check_map(t_data *data, int fd);
 
 // Events
 int on_destroy(t_data *data);

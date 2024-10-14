@@ -6,7 +6,7 @@
 /*   By: diolivei <diolivei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 14:11:42 by diolivei          #+#    #+#             */
-/*   Updated: 2024/10/08 15:05:52 by diolivei         ###   ########.fr       */
+/*   Updated: 2024/10/14 19:10:23 by diolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define LIBFT_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
+#  define BUFFER_SIZE 1
 # endif
 
 # include <string.h>
@@ -23,6 +23,12 @@
 # include <stdio.h>
 # include <stdarg.h>
 # include <fcntl.h>
+
+typedef struct	s_point
+{
+	int	x;
+	int	y;
+}		t_point;
 
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
@@ -45,6 +51,7 @@ void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
+void	flood_fill(char **tab, t_point size, t_point begin);
 char	*ft_strchr(const char *str, int c);
 char	*ft_strrchr(const char *str, int c);
 char	*ft_strnstr(const char *str1, const char *str2, size_t n);

@@ -6,7 +6,7 @@
 /*   By: diolivei <diolivei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 17:59:18 by diolivei          #+#    #+#             */
-/*   Updated: 2024/10/10 19:58:25 by diolivei         ###   ########.fr       */
+/*   Updated: 2024/10/14 17:05:42 by diolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,19 +75,12 @@ void fill_line(t_data *data, char *line, int j)
 		{
 			data->map.player_x = i;
 			data->map.player_y = j;
-			data->map.player++;
 			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->textures[2], i * SIZE, j * SIZE);
 		}
 		if (line[i] == 'C')
-		{
-			data->map.collectible++;
 			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->textures[3], i * SIZE, j * SIZE);
-		}
 		if (line[i] == 'E')
-		{
-			data->map.exit++;
 			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->textures[4], i * SIZE, j * SIZE);
-		}
 		i++;
 	}
 }
@@ -97,19 +90,16 @@ void fill_map(t_data *data, int fd)
     char *line;
 
     j = 0;
+	lseek(fd, 0, SEEK_SET);
     while (j < data->map.height)
     {
         line = get_next_line(fd);
-		printf("%s\n", line);
-
         data->map.map[j] = ft_strdup(line);
         free(line);
-
-        ft_printf("Line %d: %s", j, data->map.map[j]);
-
-        fill_line(data, data->map.map[j], j);  // Fill the line in the window
+        fill_line(data, data->map.map[j], j);
         j++;
 	}
+	lseek(fd, 0, SEEK_SET);
 }
 
 

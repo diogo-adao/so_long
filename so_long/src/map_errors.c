@@ -6,57 +6,88 @@
 /*   By: diolivei <diolivei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 17:51:46 by diolivei          #+#    #+#             */
-/*   Updated: 2024/10/10 18:52:51 by diolivei         ###   ########.fr       */
+/*   Updated: 2024/10/14 19:07:40 by diolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-int wrong_shape(t_data *data)
+int is_not_surrounded_by_walls(t_data *data, int fd)
 {
-    int i;
-    int j;
-    int line_length;
+	if (first_row(fd))
+		return (1);
+	if (last_row(data, fd))
+		return (1);
+	if (first_and_last_col(data, fd))
+		return (1);
+	return (0);
+}
 
-    i = 0;
-    while (i < data->map.height)
+int wrong_shape(t_data *data, int fd)
+{
+    int j;
+	int i;
+    char *line;
+
+    j = 0;
+	lseek(fd, 0, SEEK_SET);
+    while (j < data->map.height)
     {
-        j = 0;
-        line_length = 0;
-        while (data->map.map[i][j] && data->map.map[i][j] != '\n')
-        {
-            line_length++;
-            j++;
-        }
-        if (line_length != data->map.width)
-        {
-            ft_printf("The map should be a square or a rectangle\n");
-            return (1);
-        }
-        i++;
-    }
+		i = 0;
+        line = get_next_line(fd);
+		while (line && line[i] != '\n')
+			i++;
+		if (i != data->map.width)
+    	{
+			free(line);
+        	ft_printf("The map should be a square or a rectangle\n");
+        	return (1);
+    	}
+		free(line);
+        j++;
+	}
+	if (is_not_surrounded_by_walls(data, fd))
+		return (1);
     return (0);
 }
 
-
-int invalid_map(t_data *data)
+void check_line(t_data *data, char *line)
 {
-	if (wrong_shape(data))
-		return (1);
-	if (data->map.player != 1)
+	int i;
+
+	i = 0;
+	while (line && line[i])
 	{
-		ft_printf("You can only have 1 player.\n");
-		return (1);
+		if (line[i] == 'P')
+			data->map.player++;
+		if (line[i] == 'C')
+			data->map.collectible++;
+		if (line[i] == 'E')
+			data->map.exit++;
+		i++;
 	}
-	if (data->map.exit != 1)
-	{
-		ft_printf("You can only have 1 exit.\n");
-		return (1);
+}
+
+void check_map(t_data *data, int fd)
+{
+    int j;
+    char *line;
+
+    j = 0;
+	lseek(fd, 0, SEEK_SET);
+    while (j < data->map.height)
+    {
+        line = get_next_line(fd);
+        check_line(data, line);
+		free(line);
+        j++;
 	}
-	if (data->map.collectible < 1)
-	{
-		ft_printf("You need at least 1 collectible.\n");
+	lseek(fd, 0, SEEK_SET);
+}
+
+int invalid_map(t_data *data, int fd)
+{
+	if (not_valid(data, fd))
 		return (1);
-	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: diolivei <diolivei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 16:37:44 by diolivei          #+#    #+#             */
-/*   Updated: 2024/10/10 17:55:48 by diolivei         ###   ########.fr       */
+/*   Updated: 2024/10/14 18:43:33 by diolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,23 @@ void move_handler(t_data *data, int new_x, int new_y)
 	}
 	else
 		ft_printf("You made %d moves\n", i);
+}
+
+void move_player(t_data *data, int x, int y)
+{
+    int new_x;
+    int new_y;
+
+	new_x = data->map.player_x + x;
+	new_y = data->map.player_y + y;
+	if (is_valid_move(data, new_x, new_y))
+    {
+        move_handler(data, new_x, new_y);
+        data->map.map[data->map.player_y][data->map.player_x] = '0';
+        data->map.map[new_y][new_x] = 'P';
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->textures[0], data->map.player_x * SIZE, data->map.player_y * SIZE);
+        mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->textures[2], new_x * SIZE, new_y * SIZE);
+        data->map.player_x = new_x;
+        data->map.player_y = new_y;
+    }
 }
