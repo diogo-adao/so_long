@@ -6,7 +6,7 @@
 /*   By: diolivei <diolivei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 15:35:07 by diolivei          #+#    #+#             */
-/*   Updated: 2024/04/25 20:12:40 by diolivei         ###   ########.fr       */
+/*   Updated: 2024/10/15 14:44:48 by diolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,3 @@ char	*ft_strdup(const char *str)
 	ptr[i] = '\0';
 	return (ptr);
 }
-
-/*int main() {
-	char str[] = "42 school";
-
-	char *target = ft_strdup(str);
-	printf("%s\n", target);
-	return (0);
-}*/

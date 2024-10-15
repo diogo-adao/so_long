@@ -6,7 +6,7 @@
 /*   By: diolivei <diolivei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 15:58:47 by diolivei          #+#    #+#             */
-/*   Updated: 2024/04/29 18:26:00 by diolivei         ###   ########.fr       */
+/*   Updated: 2024/10/15 18:01:30 by diolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,3 @@ char	*ft_strchr(const char *str, int c)
 		return (ptr);
 	return (0);
 }
-
-/* int main()
-{
-	printf(ft_strchr("teste", '\0'));
-	printf(strchr("teste", '\0'));
-	return (0);
-} */

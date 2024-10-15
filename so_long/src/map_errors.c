@@ -6,13 +6,13 @@
 /*   By: diolivei <diolivei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 17:51:46 by diolivei          #+#    #+#             */
-/*   Updated: 2024/10/14 19:07:40 by diolivei         ###   ########.fr       */
+/*   Updated: 2024/10/15 18:40:37 by diolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-int is_not_surrounded_by_walls(t_data *data, int fd)
+int	is_not_surrounded_by_walls(t_data *data, int fd)
 {
 	if (first_row(fd))
 		return (1);
@@ -23,37 +23,37 @@ int is_not_surrounded_by_walls(t_data *data, int fd)
 	return (0);
 }
 
-int wrong_shape(t_data *data, int fd)
+int	wrong_shape(t_data *data, int fd)
 {
-    int j;
-	int i;
-    char *line;
+	int		j;
+	int		i;
+	char	*line;
 
-    j = 0;
+	j = 0;
 	lseek(fd, 0, SEEK_SET);
-    while (j < data->map.height)
-    {
+	while (j < data->map.height)
+	{
 		i = 0;
-        line = get_next_line(fd);
+		line = get_next_line(fd);
 		while (line && line[i] != '\n')
 			i++;
 		if (i != data->map.width)
-    	{
+		{
 			free(line);
-        	ft_printf("The map should be a square or a rectangle\n");
-        	return (1);
-    	}
+			ft_printf("The map should be a square or a rectangle\n");
+			return (1);
+		}
 		free(line);
-        j++;
+		j++;
 	}
 	if (is_not_surrounded_by_walls(data, fd))
 		return (1);
-    return (0);
+	return (0);
 }
 
-void check_line(t_data *data, char *line)
+void	check_line(t_data *data, char *line)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (line && line[i])
@@ -68,26 +68,31 @@ void check_line(t_data *data, char *line)
 	}
 }
 
-void check_map(t_data *data, int fd)
+void	check_map(t_data *data, int fd)
 {
-    int j;
-    char *line;
+	int		j;
+	char	*line;
 
-    j = 0;
+	j = 0;
 	lseek(fd, 0, SEEK_SET);
-    while (j < data->map.height)
-    {
-        line = get_next_line(fd);
-        check_line(data, line);
+	while (j < data->map.height)
+	{
+		line = get_next_line(fd);
+		check_line(data, line);
 		free(line);
-        j++;
+		j++;
 	}
 	lseek(fd, 0, SEEK_SET);
 }
 
-int invalid_map(t_data *data, int fd)
+int	invalid_map(t_data *data, int fd)
 {
 	if (not_valid(data, fd))
 		return (1);
+	if (exit_not_reachable(data, fd))
+	{
+		ft_printf("Exit or some collectibles are not reachable");
+		return (1);
+	}
 	return (0);
 }
