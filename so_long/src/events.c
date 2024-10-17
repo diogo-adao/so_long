@@ -6,7 +6,7 @@
 /*   By: diolivei <diolivei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 18:33:43 by diolivei          #+#    #+#             */
-/*   Updated: 2024/10/15 18:08:22 by diolivei         ###   ########.fr       */
+/*   Updated: 2024/10/17 15:44:46 by diolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,13 @@ int	on_keypress(int keycode, t_data *data)
 {
 	if (keycode == 65307)
 		on_destroy(data);
-	else if (keycode == 65362)
+	else if (keycode == 65362 || keycode == 119)
 		move_player(data, 0, -1);
-	else if (keycode == 65364)
+	else if (keycode == 65364 || keycode == 115)
 		move_player(data, 0, 1);
-	else if (keycode == 65361)
+	else if (keycode == 65361 || keycode == 97)
 		move_player(data, -1, 0);
-	else if (keycode == 65363)
+	else if (keycode == 65363 || keycode == 100)
 		move_player(data, 1, 0);
 	return (0);
 }
