@@ -6,7 +6,7 @@
 /*   By: diolivei <diolivei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 17:51:46 by diolivei          #+#    #+#             */
-/*   Updated: 2024/10/15 18:40:37 by diolivei         ###   ########.fr       */
+/*   Updated: 2024/10/17 17:44:33 by diolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	check_line(t_data *data, char *line)
 	int	i;
 
 	i = 0;
-	while (line && line[i])
+	while (line && line[i] != '\n')
 	{
 		if (line[i] == 'P')
 			data->map.player++;
@@ -64,6 +64,9 @@ void	check_line(t_data *data, char *line)
 			data->map.collectible++;
 		if (line[i] == 'E')
 			data->map.exit++;
+		if (line[i] != '0' && line[i] != '1' && line[i] != 'P'
+			&& line[i] != 'C' && line[i] != 'E')
+			data->map.error++;
 		i++;
 	}
 }
@@ -92,6 +95,11 @@ int	invalid_map(t_data *data, int fd)
 	if (exit_not_reachable(data, fd))
 	{
 		ft_printf("Exit or some collectibles are not reachable");
+		return (1);
+	}
+	if (data->map.error > 0)
+	{
+		ft_printf("The map can only contain '1','0','P','C','E'.");
 		return (1);
 	}
 	return (0);

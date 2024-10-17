@@ -6,7 +6,7 @@
 /*   By: diolivei <diolivei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 15:04:40 by diolivei          #+#    #+#             */
-/*   Updated: 2024/10/17 15:21:42 by diolivei         ###   ########.fr       */
+/*   Updated: 2024/10/17 17:29:01 by diolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	init_vars(t_data *data, int fd)
 	data->map.exit = 0;
 	data->map.player = 0;
 	data->map.collectible = 0;
+	data->map.error = 0;
 }
 
 void	free_map(char **map, int height)

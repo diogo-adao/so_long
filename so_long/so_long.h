@@ -6,7 +6,7 @@
 /*   By: diolivei <diolivei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 16:39:58 by diolivei          #+#    #+#             */
-/*   Updated: 2024/10/15 18:36:51 by diolivei         ###   ########.fr       */
+/*   Updated: 2024/10/17 17:28:23 by diolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct s_map
 	int		player_y;
 	int		collectible;
 	int		exit;
+	int		error;
 }	t_map;
 
 typedef struct s_data
