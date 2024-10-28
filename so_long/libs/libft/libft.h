@@ -6,7 +6,7 @@
 /*   By: diolivei <diolivei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 14:11:42 by diolivei          #+#    #+#             */
-/*   Updated: 2024/10/15 17:59:30 by diolivei         ###   ########.fr       */
+/*   Updated: 2024/10/28 17:17:35 by diolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 
 char	*ft_strdup(const char *str);
 char	*ft_strchr(const char *str, int c);
+int		ft_strncmp(const char *str1, const char *str2, size_t n);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strjoin(char const *s1, char const *s2);
 size_t	ft_strlen(const char *str);

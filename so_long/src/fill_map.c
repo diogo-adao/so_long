@@ -6,19 +6,20 @@
 /*   By: diolivei <diolivei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 17:59:18 by diolivei          #+#    #+#             */
-/*   Updated: 2024/10/15 18:37:29 by diolivei         ###   ########.fr       */
+/*   Updated: 2024/10/28 16:27:56 by diolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-int	define_width(int fd)
+int	define_width(char *arg)
 {
 	char	*line;
 	int		width;
+	int		fd;
 
 	width = 0;
-	lseek(fd, 0, SEEK_SET);
+	fd = open(arg, O_RDONLY);
 	line = get_next_line(fd);
 	if (line)
 	{
@@ -26,25 +27,26 @@ int	define_width(int fd)
 			width++;
 		free(line);
 	}
-	lseek(fd, 0, SEEK_SET);
+	close(fd);
 	return (width);
 }
 
-int	define_height(int fd)
+int	define_height(char *arg)
 {
 	char	*line;
 	int		height;
+	int		fd;
 
 	height = 0;
-	lseek(fd, 0, SEEK_SET);
+	fd = open(arg, O_RDONLY);
 	line = get_next_line(fd);
-	while (line)
+	while (line && line[0] != '\n')
 	{
 		free(line);
 		line = get_next_line(fd);
 		height++;
 	}
-	lseek(fd, 0, SEEK_SET);
+	close(fd);
 	return (height);
 }
 
@@ -77,13 +79,14 @@ void	fill_line(t_data *data, char *line, int j)
 	}
 }
 
-void	fill_map(t_data *data, int fd)
+void	fill_map(t_data *data, char *arg)
 {
 	int		j;
 	char	*line;
+	int		fd;
 
 	j = 0;
-	lseek(fd, 0, SEEK_SET);
+	fd = open(arg, O_RDONLY);
 	while (j < data->map.height)
 	{
 		line = get_next_line(fd);
@@ -93,5 +96,5 @@ void	fill_map(t_data *data, int fd)
 		j++;
 	}
 	data->map.map[j] = NULL;
-	lseek(fd, 0, SEEK_SET);
+	close(fd);
 }

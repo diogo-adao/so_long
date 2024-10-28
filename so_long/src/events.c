@@ -6,7 +6,7 @@
 /*   By: diolivei <diolivei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 18:33:43 by diolivei          #+#    #+#             */
-/*   Updated: 2024/10/17 15:44:46 by diolivei         ###   ########.fr       */
+/*   Updated: 2024/10/28 16:08:14 by diolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,20 +55,16 @@ void	reinitialize_vars(t_data *data)
 	data->map.player_y = 0;
 }
 
-int	init_map(t_data *data, int fd)
+int	init_map(t_data *data)
 {
 	reinitialize_vars(data);
 	data->mlx_ptr = mlx_init();
 	if (!data->mlx_ptr)
-	{
-		close(fd);
 		return (1);
-	}
 	data->map.map = (char **)malloc(sizeof(char *) * (data->map.height + 1));
 	if (!data->map.map)
 	{
 		free(data->mlx_ptr);
-		close(fd);
 		return (1);
 	}
 	data->win_ptr = mlx_new_window(data->mlx_ptr, data->map.width * SIZE,
@@ -77,7 +73,6 @@ int	init_map(t_data *data, int fd)
 	{
 		free(data->map.map);
 		free(data->mlx_ptr);
-		close(fd);
 		return (1);
 	}
 	return (0);

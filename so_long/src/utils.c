@@ -6,19 +6,20 @@
 /*   By: diolivei <diolivei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 17:43:38 by diolivei          #+#    #+#             */
-/*   Updated: 2024/10/15 18:48:35 by diolivei         ###   ########.fr       */
+/*   Updated: 2024/10/28 16:04:08 by diolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-int	first_row(int fd)
+int	first_row(char *arg)
 {
 	int		i;
 	char	*line;
+	int		fd;
 
 	i = 0;
-	lseek(fd, 0, SEEK_SET);
+	fd = open(arg, O_RDONLY);
 	line = get_next_line(fd);
 	if (line)
 	{
@@ -28,22 +29,25 @@ int	first_row(int fd)
 			{
 				free(line);
 				ft_printf("The map must be surrounded by walls.");
+				close(fd);
 				return (1);
 			}
 			i++;
 		}
 		free(line);
 	}
+	close(fd);
 	return (0);
 }
 
-char	*find_last_row(t_data *data, int fd)
+char	*find_last_row(t_data *data, char *arg)
 {
 	int		j;
 	char	*line;
+	int		fd;
 
 	j = 0;
-	lseek(fd, 0, SEEK_SET);
+	fd = open(arg, O_RDONLY);
 	while (j < data->map.height)
 	{
 		line = get_next_line(fd);
@@ -51,16 +55,17 @@ char	*find_last_row(t_data *data, int fd)
 		if (j < data->map.height)
 			free(line);
 	}
+	close(fd);
 	return (line);
 }
 
-int	last_row(t_data *data, int fd)
+int	last_row(t_data *data, char *arg)
 {
 	int		i;
 	char	*line;
 
 	i = 0;
-	line = find_last_row(data, fd);
+	line = find_last_row(data, arg);
 	if (line)
 	{
 		while (line[i] && line[i] != '\n')
@@ -78,13 +83,14 @@ int	last_row(t_data *data, int fd)
 	return (0);
 }
 
-int	first_and_last_col(t_data *data, int fd)
+int	first_and_last_col(t_data *data, char *arg)
 {
 	int		i;
 	char	*line;
+	int		fd;
 
 	i = 0;
-	lseek(fd, 0, SEEK_SET);
+	fd = open(arg, O_RDONLY);
 	while (i < data->map.height)
 	{
 		line = get_next_line(fd);
@@ -94,12 +100,14 @@ int	first_and_last_col(t_data *data, int fd)
 			{
 				free(line);
 				ft_printf("The map should be surrounded by walls.");
+				close(fd);
 				return (1);
 			}
 			free(line);
 		}
 		i++;
 	}
+	close(fd);
 	return (0);
 }
 

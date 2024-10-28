@@ -6,7 +6,7 @@
 /*   By: diolivei <diolivei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 16:39:58 by diolivei          #+#    #+#             */
-/*   Updated: 2024/10/17 17:28:23 by diolivei         ###   ########.fr       */
+/*   Updated: 2024/10/28 19:08:29 by diolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,20 +53,22 @@ typedef struct s_point
 }		t_point;
 
 // Check map
-int		invalid_map(t_data *data, int fd);
-int		first_row(int fd);
-int		last_row(t_data *data, int fd);
-int		first_and_last_col(t_data *data, int fd);
-int		wrong_shape(t_data *data, int fd);
-int		not_valid(t_data *data, int fd);
-void	check_map(t_data *data, int fd);
-int		exit_not_reachable(t_data *data, int fd);
+int		invalid_map(t_data *data, char *arg);
+int		first_row(char *arg);
+int		last_row(t_data *data, char *arg);
+int		first_and_last_col(t_data *data, char *arg);
+int		wrong_shape(t_data *data, char *arg);
+int		not_valid(t_data *data, char *arg);
+void	check_map(t_data *data, char *arg);
+int		exit_not_reachable(t_data *data, char *arg);
+char	**map_copy(t_data *data, char *arg);
+int		has_wrong_shape(t_data *data, char *arg);
 
 // Filling the map
-int		define_width(int fd);
-int		define_height(int fd);
+int		define_width(char *arg);
+int		define_height(char *arg);
 void	textures_init(t_data *data);
-void	fill_map(t_data *data, int fd);
+void	fill_map(t_data *data, char *arg);
 void	put_image(t_data *data, char tile, int i, int j);
 void	free_map(char **map, int height);
 
@@ -77,7 +79,7 @@ void	move_handler(t_data *data, int new_x, int new_y);
 void	move_player(t_data *data, int x, int y);
 
 // Events
-int		init_map(t_data *data, int fd);
+int		init_map(t_data *data);
 int		on_destroy(t_data *data);
 int		on_keypress(int keycode, t_data *data);
 
