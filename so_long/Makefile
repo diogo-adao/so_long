@@ -6,7 +6,7 @@
 #    By: diolivei <diolivei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/04 19:25:13 by diolivei          #+#    #+#              #
-#    Updated: 2024/09/17 15:57:07 by diolivei         ###   ########.fr        #
+#    Updated: 2024/10/30 15:28:49 by diolivei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,12 +51,13 @@ $(MLX):
 
 clean:
 	@make -C libs/libft clean > /dev/null 2>&1
-	@make -C libs/mlx clean > /dev/null 2>&1
+	@make -C libs/mlx clean > /dev/null 2>&1 || true
 	@echo "\n🧹 $(BOLD_YELLOW)Project cleaned.$(NO_COLOR)\n"
 
 fclean: clean
 	@rm -f $(NAME)
 	@make -C libs/libft fclean > /dev/null 2>&1
+	@if [ -d "libs/mlx" ]; then rm -rf libs/mlx; fi
 
 re: fclean all
 

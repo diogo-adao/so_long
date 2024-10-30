@@ -6,7 +6,7 @@
 /*   By: diolivei <diolivei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 17:59:18 by diolivei          #+#    #+#             */
-/*   Updated: 2024/10/28 16:27:56 by diolivei         ###   ########.fr       */
+/*   Updated: 2024/10/30 15:46:49 by diolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ int	define_height(char *arg)
 		line = get_next_line(fd);
 		height++;
 	}
+	free(line);
 	close(fd);
 	return (height);
 }
