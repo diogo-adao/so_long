@@ -37,9 +37,24 @@ The project requires **parsing the map**, checking for validity, and implementin
 - **Game logic** – handling collisions, win condition, and movement constraints  
 
 
-## 🧩 Usage
+## 🧩 Installation & Usage
 
-### 1. 🛠️ Build the project
 ```bash
+# Clone the repository
+git clone https://github.com/diogo-adao/so_long.git
+
+# Go to the folder
+cd so_long && cd so_long
+
+# Build the program
 make
+(it automatically clones the MiniLibX library)
+
+# Run the game
+./so_long maps/big_map.ber
+```
+
+## 👨‍💻 Author
+[Diogo Adão](https://github.com/diogo-adao)
+
 
