@@ -54,7 +54,7 @@ make
 ./so_long maps/big_map.ber
 ```
 ## 💡 Notes
-You can create your own map and it will still run as long as respects all map validation checks.
+Feel free to create your own maps — they’ll run as long as they follow the map validation rules.
 
 ## 👨‍💻 Author
 [Diogo Adão](https://github.com/diogo-adao)
