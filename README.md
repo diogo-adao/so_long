@@ -53,6 +53,8 @@ make
 # Run the game
 ./so_long maps/big_map.ber
 ```
+## 💡 Notes
+You can create your own map and it will still run as long as respects all map validation checks.
 
 ## 👨‍💻 Author
 [Diogo Adão](https://github.com/diogo-adao)
