@@ -48,7 +48,7 @@ cd so_long && cd so_long
 
 # Build the program
 make
-# (it automatically clones the MiniLibX library)
+(it automatically clones the MiniLibX library)
 
 # Run the game
 ./so_long maps/big_map.ber
